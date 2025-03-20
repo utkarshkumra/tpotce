@@ -658,21 +658,6 @@
         - "Rocky"
         - "Ubuntu"
 
-    - name: Restart SSH (All)
-      service:
-        name: "{{ 'ssh' if ansible_distribution in ['Ubuntu'] else 'sshd' }}"
-        state: restarted
-        enabled: true
-      when: ansible_distribution in ["AlmaLinux", "Debian", "Fedora", "openSUSE Tumbleweed", "Raspbian", "Rocky", "Ubuntu"]
-      tags:
-        - "AlmaLinux"
-        - "Debian"
-        - "Fedora"
-        - "openSUSE Tumbleweed"
-        - "Raspbian"
-        - "Rocky"
-        - "Ubuntu"
-
 #######################################################################
 # T-Pot - Adjust group users, bashrc, clone / update T-Pot repository #
 #######################################################################
