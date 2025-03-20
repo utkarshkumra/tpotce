@@ -307,7 +307,7 @@ fi
 
 # Pull docker images
 echo "### Now pulling images ..."
-sudo docker compose -f /home/${myUSER}/tpotce/docker-compose.yml pull
+sudo docker compose -f /home/utkarsh.kumra/tpotce-self/docker-compose.yml pull
 echo
 
 # Show running services
