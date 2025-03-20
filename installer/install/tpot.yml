@@ -83,13 +83,13 @@
       assert:
         that: ansible_user_id != 'root'
         fail_msg: "T-Pot playbook should not be run as root."
-        success_msg: "Running as user: {{ ansible_user_id }}."
+        success_msg: "Running as user: utkarsh.kumra."
 
     - name: Check if running as tpot (All)
       assert:
         that: ansible_user_id != 'tpot'
         fail_msg: "Reserved username `tpot` detected."
-        success_msg: "Running as user: {{ ansible_user_id }}."
+        success_msg: "Running as user: utkarsh.kumra."
 
     - name: Check if supported distribution (All)
       assert:
@@ -678,7 +678,7 @@
   tasks:
     - name: Check for non-root user id (All)
       debug:
-        msg: "Detected user: '{{ ansible_user_id }}'"
+        msg: "Detected user: 'utkarsh.kumra'"
       when: ansible_distribution in ["AlmaLinux", "Debian", "Fedora", "openSUSE Tumbleweed", "Raspbian", "Rocky", "Ubuntu"]
       failed_when: ansible_user_id == "root"
 
@@ -706,7 +706,7 @@
     - name: Clone / Update T-Pot repository (All)
       git:
         repo: 'https://github.com/telekom-security/tpotce'
-        dest: '/home/{{ ansible_user_id }}/tpotce/'
+        dest: '/home/utkarsh.kumra/tpotce-self/'
         version: master
         clone: yes
         update: no
@@ -715,7 +715,7 @@
     - name: Add current user to Docker, T-Pot group (All)
       become: true
       user:
-        name: "{{ ansible_user_id }}"
+        name: "utkarsh.kumra"
         groups: 
           - docker
           - tpot
@@ -743,7 +743,7 @@
     - name: Install systemd service (All)
       become: true
       ansible.builtin.template:
-        src: '/home/{{ ansible_user_id }}/tpotce/installer/install/tpot.service'
+        src: '/home/utkarsh.kumra/tpotce-self/installer/install/tpot.service'
         dest: '/etc/systemd/system/tpot.service'
         owner: root
         group: root
